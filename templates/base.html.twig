@@ -39,7 +39,12 @@
                         </li>
                     </ul>
                     <div class="speed-menu">
-                        <a href=""><i data-feather="user"></i></a>
+                        {% if app.user %}
+                            <a href="{{ path('app_profile') }}">{{ app.user.firstname }}</a>
+                        {% else %}
+                            <a href="{{ path('app_login') }}"><i data-feather="user"></i>
+                        {% endif %}
+                        
                         <a href=""><i data-feather="shopping-cart"></i></a>
                     </div>
                 </div>
