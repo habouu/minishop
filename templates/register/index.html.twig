@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sign Up - minishop{% endblock %}
+
+{% block body %}
+
+    <div class="container my-5">
+        <h1 class="mb-3">Sign Up</h1>
+        {{ form_start(form) }}
+            <div class="row">
+                <div class="col">
+                    {{ form_row(form.firstname) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.lastname) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{ form_row(form.email) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{ form_row(form.plainPassword.first) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{ form_row(form.plainPassword.second) }}
+                </div>
+            </div>
+        {{ form_end(form) }}
+        <br>
+        Already have an account? <a href="#">Sign In</a>
+    </div>
+{% endblock %}
