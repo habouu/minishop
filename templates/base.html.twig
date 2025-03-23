@@ -53,10 +53,21 @@
     </header>
     <main>
 
+        <div class="container mt-4">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+
+
         {% block body %}{% endblock %}
 
 
-        
         <!-- FOOTER -->
         <footer class="container">
             <p>&copy; 2017–2025 minishop <a href="#">CGV</a> &middot; <a href="#">CGU</a></p>
