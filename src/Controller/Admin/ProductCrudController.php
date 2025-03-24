@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Product;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -31,6 +30,10 @@ class ProductCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        $required = true;
+        if ($pageName == 'edit') {
+            $required = false;
+        }
         return [
             TextField::new('name'),
             SlugField::new('slug')->setTargetFieldName('name')->setHelp('URL automatically generate'),
@@ -39,7 +42,8 @@ class ProductCrudController extends AbstractCrudController
                 ->setHelp('600x600')
                 ->setUploadedFileNamePattern('[slug]-[contenthash].[extension]')
                 ->setBasePath('/uploads')
-                ->setUploadDir('/public/uploads'),
+                ->setUploadDir('/public/uploads')
+                ->setRequired($required),
             NumberField::new('price')->setHelp('HT'),
             ChoiceField::new('tva')->setLabel('TVA')->setChoices([
                 '5,5%' => '5.5',
