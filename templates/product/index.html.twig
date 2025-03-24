@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product - minishop{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="/uploads/{{ product.image }}" alt="{{ product.name }}" class="img-fluid">
+            </div>
+
+            <div class="col-md-6">
+                <small>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ path('app_category', { slug : product.category.slug }) }}">{{ product.category.name }}</a></li>
+                            <li class="breadcrumb-item">{{ product.name }}</li>
+                        </ol>
+                    </nav>
+                </small>
+                <h1>{{ product.name }}</h1>
+                <span class="d-block mb-3">{{ product.pricewt }}</span>
+                <p>{{ product.description|raw }}</p>
+                <button type="button" class="btn btn-success w-100 mt-4">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
