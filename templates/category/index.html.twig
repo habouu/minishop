@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category - minishop{% endblock %}
+
+{% block body %}
+    <div class="container my5">
+        <h1>{{ category.name }}</h1>
+
+        <p>{{ category.products|length }} product(s)</p>
+
+        <div class="row">
+            {% for product in category.products %}
+                <div class="col-md-3 text-center">
+                    <img src="/uploads/{{ product.image }}" alt="{{ product.name }}" class="img-fluid">
+                    <strong>{{ product.name }}</strong>
+                    <span class="d-block">{{ product.pricewt }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
