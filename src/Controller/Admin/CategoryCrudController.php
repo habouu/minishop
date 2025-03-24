@@ -2,32 +2,32 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\User;
+use App\Entity\Category;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 
-class UserCrudController extends AbstractCrudController
+class CategoryCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return User::class;
+        return Category::class;
     }
 
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('User')
-            ->setEntityLabelInPlural('Users')
+            ->setEntityLabelInSingular('Category')
+            ->setEntityLabelInPlural('Categories')
         ;
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('firstname'),
-            TextField::new('lastname'),
-            TextField::new('email')->onlyOnIndex()
+            TextField::new('name')->setHelp('Title of the Category'),
+            SlugField::new('slug')->setTargetFieldName('name')->setHelp('URL automatically generate')
         ];
     }
 }
