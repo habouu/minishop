@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Twig;
+namespace App\Twig\Extension;
 
 use App\Classes\Cart;
 use App\Repository\CategoryRepository;
@@ -8,7 +8,7 @@ use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 use Twig\TwigFilter;
 
-class AppExtensions extends AbstractExtension implements GlobalsInterface
+class AppExtension extends AbstractExtension implements GlobalsInterface
 {
     private $categoryRepository;
     private $cart;
