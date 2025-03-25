@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile | Addresses - minishop{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <h1>My account</h1>
+
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'profile/_menu.html.twig' %}
+            </div>
+            <div class="col-md-9">
+                <div class="d-flex justify-content-between">
+                    <h5>Addresses</h5>
+                    <a href="{{ path('app_profile_address_form') }}" class="btn btn-light">Add a new Address</a>
+                </div>
+
+                {% if app.user.addresses|length == 0 %}
+                    <p>There is no address for now</p>
+                {% else %}
+                    <div class="row">
+                        {% for address in app.user.addresses %}
+                            <div class="col-md-4 mt-2">
+                                <div class="card" style="width: 18rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ address.firstname }} {{ address.lastname }}</h5>
+                                        <p class="card-text">{{ address.address }} <br> {{ address.zipcode }}, {{ address.city }} - {{ address.country }}</p>
+                                        <a href="{{ path('app_profile_address_form', { id : addres.id }) }}" class="card-link">Edit</a>
+                                        <a href="{{ path('app_profile_address_delete', { id : addres.id } )}}" class="card-link">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}
